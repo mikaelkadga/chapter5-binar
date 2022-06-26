@@ -15,7 +15,6 @@ const userList = [
 //get all user
 const getUsers = (req, res) => {
     res.json(userList.length === 0 ? 'user empty' : userList);
-    // res.send("userList");
 }
 
 //create new user
@@ -26,7 +25,6 @@ const createUser = (req, res) => {
     const userId = userList[userList.length - 1].id + 1;
     userList.push({"id": userId, "username" : userName, "password": password});
     res.json(userList)
-    console.log(userId);
 }
 
 //get user by specific id
@@ -42,7 +40,6 @@ const getUser = (req, res) => {
 
 //edit user data by specific id
 const editUser = (req, res) => {
-    // res.send(`edit user by id: ${req.params.userId}`);
     const {userId} = req.params;
 
     const selectedUser = userList.find(user => user.id == userId);
