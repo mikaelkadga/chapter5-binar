@@ -1,23 +1,10 @@
-const readline = require('readline');
-const fs = require('fs');
+const { saveContact, question } = require("./contact");
 
-const rl = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout
-});
+const main = async () => {
+  const name = await question('name? ');
+  const email = await question('email? ');
 
-rl.question('name? ', (name) => {
-    rl.question('phone number? ', (phoneNumber) => {
-        const contact = {name , phoneNumber};
-        
-        //read contacts.json 
-        const file = fs.readFileSync('./contacts.json', 'utf-8');
-        const contacts = JSON.parse(file);
-        contacts.push(contact);
+  saveContact(name, email)
+}
 
-        //write contacts.json
-        fs.writeFileSync('./contacts.json', JSON.stringify(contacts));
-        console.log('terima kasih')
-        rl.close();
-    })
-});
+main();
